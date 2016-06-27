@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "313430730901",
+    "firebase_url": "https://practicefirebase-23bfc.firebaseio.com",
+    "project_id": "practicefirebase-23bfc",
+    "storage_bucket": "practicefirebase-23bfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313430730901:android:ae3a6b62fc820617",
+        "android_client_info": {
+          "package_name": "com.egloos.realmove.praticefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313430730901-442rt67oovfvnq4lqa0q4tvro85no8en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfiIjG6444LZBSbHLiOssriurUsXQsZc8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
