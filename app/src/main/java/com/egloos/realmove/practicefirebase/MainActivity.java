@@ -6,13 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void testFirebaseDatabase() {
-		FirebaseCrash.log("testFirebaseDatabase()");
+		//FirebaseCrash.log("testFirebaseDatabase()");
 
 		FirebaseDatabase fd = FirebaseDatabase.getInstance();
 		DatabaseReference dbRef = fd.getReferenceFromUrl("https://practicefirebase-23bfc.firebaseio.com/");
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+		//FirebaseCrash.report(new Exception("My first Android non-fatal error"));
 	}
 
 	private void d(String line) {

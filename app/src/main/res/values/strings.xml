@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PracticeFirebase</string>
     <string name="action_settings">Settings</string>
+    <string name="my_text">Hello Android</string>
+
+    <string name="my_text_kor">안녕 안드로이드야</string>
+
 </resources>
