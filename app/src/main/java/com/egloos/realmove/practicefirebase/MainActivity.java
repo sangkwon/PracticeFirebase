@@ -1,6 +1,7 @@
 package com.egloos.realmove.practicefirebase;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		testFirebaseDatabase();
+		testRemoteConfig();
 	}
 
 	private void testFirebaseDatabase() {
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 					for (DataSnapshot groupSnapshot : groups.getChildren()) {
 						Group group = groupSnapshot.getValue(Group.class);
 						d("-" + group.getName());
-						for (Scheme scheme: group.getSchemes()) {
+						for (Scheme scheme : group.getSchemes()) {
 							d("   -" + scheme.getTitle() + " " + scheme.getUri());
 						}
 					}
@@ -99,6 +105,34 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 		//FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+	}
+
+	private void testRemoteConfig() {
+		findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+				firebaseRemoteConfig.fetch(43200)
+					.addOnCompleteListener(new OnCompleteListener<Void>() {
+						@Override
+						public void onComplete(@NonNull Task<Void> task) {
+							if (task.isSuccessful()) {
+//								Toast.makeText(MainActivity.this, "Fetch Succeeded",
+//									Toast.LENGTH_SHORT).show();
+
+								// Once the config is successfully fetched it must be activated before newly fetched
+								// values are returned.
+								firebaseRemoteConfig.activateFetched();
+							} else {
+								Toast.makeText(MainActivity.this, "Fetch Failed",
+									Toast.LENGTH_SHORT).show();
+							}
+
+							Toast.makeText(MainActivity.this, firebaseRemoteConfig.getString("button_color"), Toast.LENGTH_SHORT).show();
+						}
+					});
+			}
+		});
 	}
 
 	private void d(String line) {
